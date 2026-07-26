@@ -2,6 +2,7 @@ import {
   LocalizedContent,
   Page,
   Site,
+  VenueImage,
   getLocalizedContent,
 } from "@venuecms/sdk-next";
 import { VenueContent } from "@venuecms/sdk-next";
@@ -48,6 +49,7 @@ export const Nav = async ({ logo, site }: { logo: ReactNode; site: Site }) => {
     ? rootPageContents.map(({ page, content, isStatic }) => (
         <li key={page.slug}>
           <Link
+            className="md:underline-effect align-center"
             href={
               page.type === "LINK" && page.linkUrl
                 ? page.linkUrl
@@ -55,7 +57,10 @@ export const Nav = async ({ logo, site }: { logo: ReactNode; site: Site }) => {
             }
             target={page.type === "LINK" && page.linkUrl ? "_blank" : "_self"}
           >
-            {content.title}
+            <div className="flex flex-row items-center gap-2 md:flex-col md:gap-1">
+              <VenueImage image={page.image} />
+              {content.title}
+            </div>
           </Link>
         </li>
       ))
