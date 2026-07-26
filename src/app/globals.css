@@ -12,7 +12,7 @@
     content: '';
     position: absolute;
     width: 100%;
-    height: 0.2rem;
+    height: 0.125rem;
     left: 0;
     bottom: -2px;
     background-color: hsla(var(--primary));
@@ -55,7 +55,7 @@ html.default {
     --overlay: 0, 0%, 50%, 0.4;
   }
 
-  @media (prefers-color-scheme: light) {
+  @media (prefers-color-scheme: dark) {
     & header img {
       filter: invert(1);
     }
