@@ -24,6 +24,8 @@ export default {
         primary: "hsla(var(--primary))",
         secondary: "hsla(var(--secondary))",
         muted: "hsla(var(--muted))",
+        darkgreen: "hsla(var(--darkgreen))",
+        white: "hsla(var(--white))",
         "text-3": "hsla(var(--text-3))",
         nav: "hsla(var(--nav))",
         "button-background": "hsla(var(--button-background))",
@@ -37,6 +39,7 @@ export default {
         sm: ["0.9rem", "1.6rem"],
         md: ["1.5rem", "2rem"],
         xl: ["2.25rem", "2.5rem"],
+        xxl: ["4.7rem", "4.7rem"],
       },
       fontWeight: {
         light: "300",

@@ -16,7 +16,7 @@ export const NavMenuMobile = ({
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="flex w-auto items-center justify-between sm:hidden">
+    <nav className="flex w-auto items-center justify-between md:hidden">
       <div className="flex gap-8">
         {/* <SearchIcon className="size-6" /> */}
         <Dialog.Root open={open} onOpenChange={setOpen}>

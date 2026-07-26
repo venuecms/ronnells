@@ -4,5 +4,7 @@ export * from "./News";
 export * from "./Page";
 export * from "./Profile";
 export * from "./ProfileCompact";
+export * from "./ProfileLink";
+export * from "./ProfileStaff";
 export * from "./TicketList";
 export * from "./SiteLogo";
