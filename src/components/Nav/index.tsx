@@ -48,6 +48,7 @@ export const Nav = async ({ logo, site }: { logo: ReactNode; site: Site }) => {
     ? rootPageContents.map(({ page, content, isStatic }) => (
         <li key={page.slug}>
           <Link
+            className="underline-effect"
             href={
               page.type === "LINK" && page.linkUrl
                 ? page.linkUrl
