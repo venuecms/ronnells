@@ -1,4 +1,4 @@
-# VenueCMS template-minimal
+# VenueCMS rönnells-template-minimal
 
 This is a clone of the Rönnells Antikvariat website built on template minimal for [Venue CMS](https://venuecms.com).
 
