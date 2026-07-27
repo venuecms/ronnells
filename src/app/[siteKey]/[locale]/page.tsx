@@ -40,7 +40,6 @@ const Home = async ({ params }: { params: Promise<Params> }) => {
     <>
       <SiteInfo locale={locale} />
       <FeaturedEventsSection locale={locale} />
-      <EventsSection locale={locale} />
       <ProductsSection />
     </>
   );

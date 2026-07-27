@@ -4,6 +4,8 @@ import { connection } from "next/server";
 import { EventFeatured } from "@/components/EventFeatured";
 import { VenueImage } from "@/components/VenueImage";
 
+import { ColumnFull, TwoColumnLayout } from "../layout";
+
 export async function FeaturedEventsContent({ locale }: { locale: string }) {
   await connection();
 
@@ -22,16 +24,20 @@ export async function FeaturedEventsContent({ locale }: { locale: string }) {
   return (
     <>
       {featuredEvents?.records.length ? (
-        <div className="flex flex-col pb-16">
-          {featuredEvents.records.map((event) => (
-            <EventFeatured
-              key={event.id}
-              event={event}
-              site={site}
-              className="lg:pb-64"
-            />
-          ))}
-        </div>
+        <TwoColumnLayout>
+          <ColumnFull className="flex flex-row justify-between gap-12 bg-darkgreen p-8">
+            <div className="flex flex-col gap-8 sm:grid sm:grid-flow-row md:grid-cols-3">
+              {featuredEvents.records.map((event) => (
+                <EventFeatured
+                  key={event.id}
+                  event={event}
+                  site={site}
+                  className="gap-y-12"
+                />
+              ))}
+            </div>
+          </ColumnFull>
+        </TwoColumnLayout>
       ) : null}
     </>
   );
