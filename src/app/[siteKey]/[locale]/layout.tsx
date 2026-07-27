@@ -9,6 +9,7 @@ import { VenueProvider } from "@/lib/utils/VenueProvider";
 import { NavigationProgress } from "@/components/NavigationProgress";
 import { SearchProvider } from "@/components/Search/provider";
 import { SearchResultsLayout } from "@/components/SearchResults";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { ThemedBody } from "@/components/ThemedBody";
 import { setupSSR } from "@/components/utils";
@@ -39,6 +40,7 @@ const LayoutContent = async ({
               <ThemedBody>
                 <SiteHeader />
                 <SearchResultsLayout>{children}</SearchResultsLayout>
+                <SiteFooter />
               </ThemedBody>
             </Suspense>
           </SearchProvider>
@@ -60,7 +62,7 @@ const RootLayout = ({
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
-      <body className="font-base m-auto bg-background px-6 text-sm font-regular text-primary antialiased sm:max-w-[96rem] sm:px-12 lg:w-10/12">
+      <body className="font-base m-auto bg-background text-sm font-regular text-primary antialiased">
         <Suspense fallback={<Loading />}>
           <LayoutContent params={params}>{children}</LayoutContent>
         </Suspense>

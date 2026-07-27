@@ -8,3 +8,4 @@ export * from "./ProfileLink";
 export * from "./ProfileStaff";
 export * from "./TicketList";
 export * from "./SiteLogo";
+export * from "./SiteFooter";

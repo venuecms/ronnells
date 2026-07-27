@@ -36,6 +36,7 @@ export default {
         "panel-background-2": "hsla(var(--panel-background-2))",
       },
       fontSize: {
+        xs: ["0.7rem", "1rem"],
         sm: ["0.9rem", "1.6rem"],
         md: ["1.5rem", "2rem"],
         xl: ["2.25rem", "2.5rem"],
