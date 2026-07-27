@@ -2,30 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .underline-effect {
-    position: relative;
-    padding: 0;
-  }
-
-  .underline-effect::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 0.125rem;
-    left: 0;
-    bottom: -2px;
-    background-color: hsla(var(--primary));
-    
-    transform: scaleX(0);
-    transition: transform 400ms ease;
-  }
-
-  .underline-effect:hover::after {
-    
-    transform: scaleX(1);
-  }
-}
   
 html {
   --background: 300, 1%, 5%, 1;
@@ -255,9 +231,11 @@ html.blackOnWhite {
   --background: 0, 0%, 100%, 1;
   --primary: 0, 0%, 10%, 1;
   --secondary: 0, 0%, 45%, 0.9;
-  --muted: 0, 0%, 55%, 0.6;
+  --muted: 50, 100%, 95%, 0.6;
   --nav: 0, 0%, 25%, 1;
   --overlay: 0, 0%, 84%, 0.7;
+  --darkgreen: 106, 100%, 13%, 1;
+  --white: 0, 0%, 100%, 1;
 }
 
 html.darkGreyCM {
@@ -267,4 +245,30 @@ html.darkGreyCM {
   --muted: 193, 4%, 70%, 1;
   --nav: 193, 50%, 85%, 1;
   --overlay: 280, 5%, 12%, 0.8;
+}
+
+
+@layer components {
+  .underline-effect {
+    position: relative;
+    padding: 0;
+  }
+
+  .underline-effect::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 0.125rem;
+    left: 0;
+    bottom: -2px;
+    background-color: hsla(var(--primary));
+    
+    transform: scaleX(0);
+    transition: transform 400ms ease;
+  }
+
+  .underline-effect:hover::after {
+    
+    transform: scaleX(1);
+  }
 }

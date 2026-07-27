@@ -2,12 +2,12 @@ import removeMarkdown from "remove-markdown";
 
 // rendered styles for rendered content
 export const renderedStyles = {
-  p: "text-primary",
-  h2: "text-lg text-secondary",
-  h3: "text-secondary",
-  ol: "list-decimal pl-8",
-  ul: "list-disc pl-4",
-  a: "underline text-primary",
+  p: "text-white",
+  h2: "text-xl text-white",
+  h3: "text-sm font-bold text-white uppercase",
+  ol: "list-decimal pl-8 text-white",
+  ul: "list-disc pl-4 text-white",
+  a: "underline text-white",
 };
 
 export const getExcerpt = (content?: string | null) => {

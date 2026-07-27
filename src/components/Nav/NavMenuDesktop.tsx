@@ -15,9 +15,9 @@ export const NavMenuDesktop = ({
   const { isActive } = useSearchQuery();
 
   return (
-    <nav className="relative hidden w-full items-center justify-between sm:flex">
+    <nav className="relative hidden w-full items-center justify-between md:flex">
       {!isActive ? (
-        <ol className="flex w-full items-center justify-between gap-16 text-nav">
+        <ol className="flex w-full items-center justify-between text-nav">
           {children}
         </ol>
       ) : null}

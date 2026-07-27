@@ -118,7 +118,7 @@ const IBMPlexMono = IBM_Plex_Mono({
 
 const OpenSans = Open_Sans({
   subsets: ["latin"],
-  weight: ["400", "600"],
+  weight: ["400", "700"],
   display: "swap",
 });
 

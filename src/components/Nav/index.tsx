@@ -57,8 +57,11 @@ export const Nav = async ({ logo, site }: { logo: ReactNode; site: Site }) => {
             }
             target={page.type === "LINK" && page.linkUrl ? "_blank" : "_self"}
           >
-            <div className="flex flex-row items-center gap-2 md:flex-col md:gap-1">
-              <VenueImage image={page.image} />
+            <div className="flex flex-row items-center gap-2 text-nowrap md:flex-col md:gap-1">
+              <VenueImage
+                className="min-h-[48px] min-w-[48px]"
+                image={page.image}
+              />
               {content.title}
             </div>
           </Link>

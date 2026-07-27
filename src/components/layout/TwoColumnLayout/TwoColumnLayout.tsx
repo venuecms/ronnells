@@ -10,7 +10,7 @@ export const TwoColumnLayout = ({
   return (
     <div
       className={cn(
-        "flex w-full grid-cols-3 flex-col justify-between gap-12 py-6 lg:grid lg:flex-row lg:gap-36 lg:py-24",
+        "m-auto flex w-full grid-cols-3 flex-col justify-between gap-8 px-6 py-6 lg:grid lg:w-10/12 lg:flex-row lg:gap-8 lg:py-0",
         className,
       )}
     >
