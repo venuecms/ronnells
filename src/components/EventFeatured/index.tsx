@@ -4,16 +4,21 @@ import {
   getLocalizedContent,
 } from "@venuecms/sdk-next";
 import { VenueContent } from "@venuecms/sdk-next";
-
-import { VenueImage } from "@/components/VenueImage";
 import { useLocale } from "next-intl";
 
 import { Link } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
+import { VenueImage } from "@/components/VenueImage";
+
 import { LocationLink } from "../LocationLink";
 import { TicketList } from "../TicketList";
-import { ColumnLeft, ColumnRight, TwoColumnLayout } from "../layout";
+import {
+  ColumnFull,
+  ColumnLeft,
+  ColumnRight,
+  TwoColumnLayout,
+} from "../layout";
 import { formatDateRange } from "../utils";
 import { renderedStyles } from "../utils/styles";
 
@@ -34,15 +39,23 @@ export const EventFeatured = ({
 
   return (
     <>
-      <TwoColumnLayout className={cn(className, "hidden")}>
-        <ColumnLeft>
+      <div
+        className={cn(
+          "flex w-full break-inside-avoid flex-col items-center gap-y-4 bg-background p-4 pb-8 md:gap-8 md:p-8",
+          className,
+        )}
+      >
+        <div className={cn("w-full pb-3 sm:w-80 sm:max-w-full md:pb-0")}>
           <Link href={`/events/${event.slug}`}>
-            <VenueImage image={event.image} />
+            <VenueImage
+              className="w-full"
+              aspect="square"
+              image={event.image}
+            />
           </Link>
-        </ColumnLeft>
-
-        <ColumnRight className="max-w-4xl gap-16">
-          <div className="text-secondary">
+        </div>
+        <div className="flex flex-col items-center gap-1">
+          <div className="text-center uppercase text-primary">
             <Link href={`/events/${event.slug}`}>
               {formatDateRange({
                 start: event.startDate,
@@ -52,51 +65,13 @@ export const EventFeatured = ({
               })}
             </Link>
           </div>
-          <div className="text-xl text-primary">
+          <div className="text-balance text-center font-bold uppercase text-primary">
             <Link href={`/events/${event.slug}`}>{content.title}</Link>
-            {location ? (
-              <LocationLink className="pt-2 text-2xl" location={location} />
+            {event.location && !event.location.isDefault ? (
+              <LocationLink location={event.location} />
             ) : null}
           </div>
           {isCancelled ? <div className="text-secondary">Cancelled</div> : null}
-          {!isCancelled && event.tickets ? (
-            <TicketList tickets={event.tickets} />
-          ) : null}
-          <Link href={`/events/${event.slug}`}>
-            <VenueContent
-              className="flex max-w-xl flex-col gap-6"
-              content={content}
-              contentStyles={renderedStyles}
-            />
-          </Link>
-        </ColumnRight>
-      </TwoColumnLayout>
-      <div className="flex sm:hidden">
-        <div className="flex flex-col gap-8">
-          <div>
-            <div className="text-secondary">
-              <Link href={`/events/${event.slug}`}>
-                {formatDateRange({
-                  start: event.startDate,
-                  end: event.endDate,
-                  withTime: event.hasTime,
-                  timeZone: site.timeZone!,
-                })}
-              </Link>
-            </div>
-            {location ? <LocationLink location={location} /> : null}
-          </div>
-          <div className="text-xl">
-            <Link href={`/events/${event.slug}`}>{content.title}</Link>
-          </div>
-          <Link href={`/events/${event.slug}`}>
-            <VenueImage image={event.image} />
-          </Link>
-          <div className="text-xl">
-            <Link href={`/events/${event.slug}`}>
-              <VenueContent content={content} contentStyles={renderedStyles} />
-            </Link>
-          </div>
         </div>
       </div>
     </>

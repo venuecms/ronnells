@@ -10,7 +10,7 @@ export const SiteFooter = () => {
           <img className="h-auto w-[100px]" src="/logo.svg" />
         </ColumnFull>
         <ColumnFull className="items-center">
-          <div className="m-auto flex w-full flex-row justify-between px-32 pb-12 pt-6 lg:w-10/12">
+          <div className="m-auto flex w-full flex-col items-center gap-4 px-0 pb-12 pt-6 text-center md:flex-row md:items-start md:justify-between md:px-32 lg:w-10/12">
             <div className="w-max">
               <h3 className="font-bold uppercase">Öppettider</h3>
               <p>
@@ -40,7 +40,7 @@ export const SiteFooter = () => {
             </div>
           </div>
         </ColumnFull>
-        <ColumnFull className="flex flex-row items-center justify-center gap-16 pb-12">
+        <ColumnFull className="flex flex-row items-center justify-center gap-6 pb-12 md:gap-16">
           <Link href="https://www.instagram.com/ronnellsantikvariat/">
             {" "}
             <img

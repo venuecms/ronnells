@@ -37,7 +37,8 @@ export default {
       },
       fontSize: {
         xs: ["0.7rem", "1rem"],
-        sm: ["0.9rem", "1.6rem"],
+        date: ["0.8rem", "1rem"],
+        sm: ["0.9rem", "1.125rem"],
         md: ["1.5rem", "2rem"],
         xl: ["2.25rem", "2.5rem"],
         xxl: ["4.7rem", "4.7rem"],

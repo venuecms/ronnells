@@ -19,14 +19,14 @@ export const ProfileStaff = ({ profile }: { profile: VenueProfile }) => {
   return (
     <div className="grid-col-1 m-auto grid aspect-square h-full place-content-center gap-2 rounded-full bg-primary p-8 text-center">
       <Link
-        className="flex flex-col gap-0 text-white hover:brightness-125"
+        className="text-date flex flex-col gap-0 text-white hover:brightness-125"
         href={`/artists/${profile.slug}`}
       >
-        <div className="font-bold">{content?.title}</div>
+        <div className="text-date font-bold">{content?.title}</div>
         <div>({content?.shortContent})</div>
       </Link>
       <VenueContent
-        className="flex flex-col gap-6 pb-0"
+        className="text-date flex flex-col gap-6 pb-0"
         content={content}
         contentStyles={renderedStyles}
       />

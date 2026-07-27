@@ -10,26 +10,17 @@ import { VenueImage } from "@/components/VenueImage";
 import { LocationLink } from "../LocationLink";
 import { formatDateRange } from "../utils";
 
-export const EventsList = ({
+export const EventsListSimple = ({
   children,
   className,
 }: {
   children: ReactNode;
   className?: string;
 }) => {
-  return (
-    <div
-      className={cn(
-        "flex flex-col gap-8 sm:grid sm:grid-flow-row md:grid-cols-3",
-        className,
-      )}
-    >
-      {children}
-    </div>
-  );
+  return <div className={cn("flex flex-col gap-0", className)}>{children}</div>;
 };
 
-export const ListEvent = ({
+export const ListEventSimple = ({
   event,
   site,
   withImage,
@@ -54,12 +45,7 @@ export const ListEvent = ({
     artists?.find((artist) => !!artist.profile?.image)?.profile.image;
 
   return (
-    <div
-      className={cn(
-        "flex break-inside-avoid flex-col items-center gap-8 bg-background p-8 sm:gap-0",
-        className,
-      )}
-    >
+    <div className={cn("flex break-inside-avoid flex-col sm:gap-0", className)}>
       {withImage ? (
         <div className={cn("w-full pb-3 sm:w-80 sm:max-w-full")}>
           <Link href={`/events/${event.slug}`}>
@@ -67,27 +53,30 @@ export const ListEvent = ({
           </Link>
         </div>
       ) : null}
-      <div className="flex flex-col items-center gap-1">
+      <div className="flex flex-row items-center gap-2 text-white">
         {event.startDate ? (
-          <div className="text-date uppercase text-primary">
-            <Link href={`/events/${event.slug}`}>
-              {formatDateRange({
-                start: event.startDate,
-                end: event.endDate,
-                withTime: withTime && event.hasTime,
-                template: dateTemplate,
-                timeZone: site.timeZone!,
-              })}
-            </Link>
-          </div>
+          <>
+            <div className="text-white">
+              <Link href={`/events/${event.slug}`}>
+                {formatDateRange({
+                  start: event.startDate,
+                  end: event.endDate,
+                  withTime: withTime && event.hasTime,
+                  template: "EEEE dd MMMM",
+                  timeZone: site.timeZone!,
+                })}
+              </Link>
+            </div>
+            <div>—</div>
+          </>
         ) : null}
         <div
           className={cn(
-            "align-center items-center text-center text-primary hover:brightness-150",
+            "align-center items-center text-center text-white hover:brightness-150",
             isCancelled && "line-through",
           )}
         >
-          <Link className="font-bold uppercase" href={`/events/${event.slug}`}>
+          <Link className="font-bold" href={`/events/${event.slug}`}>
             {content.title}
           </Link>
         </div>
