@@ -16,7 +16,7 @@ export const NavMenuMobile = ({
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="flex w-auto items-center justify-between md:hidden">
+    <nav className="font-base flex w-auto items-center justify-between md:hidden">
       <div className="flex gap-8">
         {/* <SearchIcon className="size-6" /> */}
         <Dialog.Root open={open} onOpenChange={setOpen}>
@@ -26,7 +26,7 @@ export const NavMenuMobile = ({
 
           <Dialog.Portal>
             <Dialog.Overlay className="fixed left-0 top-0 flex h-screen w-screen overflow-y-auto bg-background">
-              <Dialog.Content className="flex w-full flex-col p-6">
+              <Dialog.Content className="flex w-full flex-col px-4 py-2">
                 <Dialog.Title className="hidden">Menu</Dialog.Title>
 
                 <header className="flex items-center justify-between pb-6 text-nav">
@@ -41,7 +41,7 @@ export const NavMenuMobile = ({
 
                 <div className="flex h-full flex-col justify-between pb-16 pt-6">
                   <ol
-                    className="flex flex-col gap-8 text-nav"
+                    className="font-base flex flex-col gap-4 pl-6 text-nav"
                     onClick={() => setOpen(false)}
                   >
                     {children}

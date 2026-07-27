@@ -25,15 +25,10 @@ export async function FeaturedEventsContent({ locale }: { locale: string }) {
     <>
       {featuredEvents?.records.length ? (
         <TwoColumnLayout>
-          <ColumnFull className="flex flex-row justify-between gap-12 bg-darkgreen p-8">
-            <div className="flex flex-col gap-8 sm:grid sm:grid-flow-row md:grid-cols-3">
+          <ColumnFull className="flex flex-row justify-between gap-12 bg-darkgreen p-4 md:p-8">
+            <div className="flex flex-col gap-8 md:grid md:grid-flow-row md:grid-cols-3">
               {featuredEvents.records.map((event) => (
-                <EventFeatured
-                  key={event.id}
-                  event={event}
-                  site={site}
-                  className="gap-y-12"
-                />
+                <EventFeatured key={event.id} event={event} site={site} />
               ))}
             </div>
           </ColumnFull>

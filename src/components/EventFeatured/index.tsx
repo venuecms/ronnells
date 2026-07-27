@@ -41,11 +41,11 @@ export const EventFeatured = ({
     <>
       <div
         className={cn(
-          "flex w-full break-inside-avoid flex-col items-center gap-8 bg-background p-8 sm:gap-0",
+          "flex w-full break-inside-avoid flex-col items-center gap-y-4 bg-background p-4 pb-8 md:gap-8 md:p-8",
           className,
         )}
       >
-        <div className={cn("w-full pb-3 sm:w-80 sm:max-w-full")}>
+        <div className={cn("w-full pb-3 sm:w-80 sm:max-w-full md:pb-0")}>
           <Link href={`/events/${event.slug}`}>
             <VenueImage
               className="w-full"

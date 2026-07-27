@@ -9,6 +9,7 @@ import { Link } from "@/lib/i18n";
 import { PageWithParent } from "@/lib/utils/tree";
 
 import { ProfileStaff } from "../ProfileStaff";
+import { Subpage } from "../SubPage";
 import { ColumnFull, TwoColumnLayout, TwoSubColumnLayout } from "../layout";
 import { renderedStyles } from "../utils";
 
@@ -22,7 +23,7 @@ export const Page = ({
   const locale = useLocale();
   const { artists = [] } = page;
   const { content } = getLocalizedContent(page?.localizedContent, locale);
-
+  const subpages = pages.filter((subpage) => subpage.parentId === page.id);
   return (
     <TwoColumnLayout>
       <ColumnFull className="pt-8">
@@ -51,13 +52,19 @@ export const Page = ({
         {artists.length ? (
           <>
             <h2 className="py-12 text-xl">Personal</h2>
-            <TwoSubColumnLayout>
+            <TwoSubColumnLayout className="md:grid-cols-4">
               {artists.map(({ profile }) => (
                 <ProfileStaff key={profile.slug} profile={profile} />
               ))}
             </TwoSubColumnLayout>
           </>
         ) : null}
+
+        <TwoSubColumnLayout>
+          {subpages.map((page) => (
+            <Subpage key={page.slug} page={page} />
+          ))}
+        </TwoSubColumnLayout>
       </ColumnFull>
     </TwoColumnLayout>
   );

@@ -30,8 +30,8 @@ export async function SiteInfo({ locale }: { locale: string }) {
   return (
     <>
       {showHeroImage ? (
-        <TwoColumnLayout className="lg:gap-12">
-          <ColumnRight className="py-8">
+        <TwoColumnLayout className="gap-0 md:gap-12">
+          <ColumnRight className="py-2 md:py-8">
             <VenueImage className="w-full" image={webSiteSettings?.image} />
           </ColumnRight>
           <ColumnLeft className="justify-center gap-6 p-4">
