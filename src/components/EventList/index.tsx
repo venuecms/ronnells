@@ -20,7 +20,7 @@ export const EventsList = ({
   return (
     <div
       className={cn(
-        "flex flex-col gap-x-8 sm:grid sm:grid-flow-row sm:grid-cols-2",
+        "flex flex-col gap-x-8 sm:grid sm:grid-flow-row md:grid-cols-3",
         className,
       )}
     >
@@ -56,20 +56,20 @@ export const ListEvent = ({
   return (
     <div
       className={cn(
-        "flex break-inside-avoid flex-col gap-8 pb-8 sm:gap-0",
+        "flex break-inside-avoid flex-col items-center gap-8 bg-background p-8 sm:gap-0",
         className,
       )}
     >
       {withImage ? (
         <div className={cn("w-full pb-3 sm:w-80 sm:max-w-full")}>
           <Link href={`/events/${event.slug}`}>
-            <VenueImage image={displayImage} aspect="video" />
+            <VenueImage image={displayImage} aspect="square" />
           </Link>
         </div>
       ) : null}
-      <div className="flex flex-col">
+      <div className="flex flex-col items-center gap-1">
         {event.startDate ? (
-          <div className="text-secondary">
+          <div className="text-date uppercase text-primary">
             <Link href={`/events/${event.slug}`}>
               {formatDateRange({
                 start: event.startDate,
@@ -83,11 +83,13 @@ export const ListEvent = ({
         ) : null}
         <div
           className={cn(
-            "text-balance text-primary hover:brightness-150",
+            "align-center items-center text-center text-primary hover:brightness-150",
             isCancelled && "line-through",
           )}
         >
-          <Link href={`/events/${event.slug}`}>{content.title}</Link>
+          <Link className="font-bold uppercase" href={`/events/${event.slug}`}>
+            {content.title}
+          </Link>
         </div>
         {event.location && !event.location.isDefault ? (
           <LocationLink location={event.location} />

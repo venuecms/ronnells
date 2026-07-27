@@ -3,8 +3,15 @@ import { getEvents, getPage, getSite } from "@venuecms/sdk-next";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 
+import { Link } from "@/lib/i18n";
+
 import { EventsList, ListEvent } from "@/components/EventList";
-import { ColumnLeft, ColumnRight, TwoColumnLayout } from "@/components/layout";
+import {
+  ColumnFull,
+  ColumnLeft,
+  ColumnRight,
+  TwoColumnLayout,
+} from "@/components/layout";
 
 export async function EventsListContent({ locale }: { locale: string }) {
   await connection();
@@ -25,10 +32,21 @@ export async function EventsListContent({ locale }: { locale: string }) {
 
   return (
     <TwoColumnLayout>
-      <ColumnLeft>
-        <p className="pb-8 text-primary">{pageTitle}</p>
-      </ColumnLeft>
-      <ColumnRight>
+      <ColumnFull className="pt-8">
+        <div className="flex flex-row justify-between gap-12">
+          <div className="text-xxl font-bold">{pageTitle}</div>
+          <Link href="../">
+            {" "}
+            <img
+              className="hidden md:block"
+              src="/logo.svg"
+              alt="Rönnells Antikvariat Logo"
+            />
+          </Link>
+        </div>
+      </ColumnFull>
+
+      <ColumnFull className="bg-darkgreen p-8">
         {events?.records.length ? (
           <EventsList className="gap-y-12">
             {events.records.map((event) => (
@@ -38,7 +56,7 @@ export async function EventsListContent({ locale }: { locale: string }) {
         ) : (
           "No events found"
         )}
-      </ColumnRight>
+      </ColumnFull>
     </TwoColumnLayout>
   );
 }
