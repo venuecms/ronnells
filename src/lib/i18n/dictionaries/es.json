@@ -56,5 +56,11 @@
     "pages": "páginas",
     "shop": "tienda",
     "error": "Algo salió mal durante la búsqueda... ¿intentar de nuevo?"
+  },
+  "antikvariat": {
+    "title": "Busca en nuestro catálogo en antikvariat.net",
+    "submit": "Buscar",
+    "description_1": "Algo más de treinta mil de nuestros más de 100.000 títulos se pueden buscar.",
+    "description_2": "El resto lo encontrarás en nuestras estanterías."
   }
 }

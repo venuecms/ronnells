@@ -56,5 +56,11 @@
     "pages": "Seiten",
     "shop": "Shop",
     "error": "Bei der Suche ist etwas schiefgelaufen... erneut versuchen?"
+  },
+  "antikvariat": {
+    "title": "Durchsuchen Sie unseren Katalog auf antikvariat.net",
+    "submit": "Suchen",
+    "description_1": "Gut dreißigtausend unserer über 100.000 Titel sind durchsuchbar.",
+    "description_2": "Alle anderen finden Sie in unseren Regalen."
   }
 }

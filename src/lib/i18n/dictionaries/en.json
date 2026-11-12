@@ -56,5 +56,11 @@
     "pages": "pages",
     "shop": "shop",
     "error": "Something went wrong while searching... try again?"
+  },
+  "antikvariat": {
+    "title": "Search our catalogue on antikvariat.net",
+    "submit": "Search",
+    "description_1": "Just over thirty thousand of our 100,000+ titles are searchable.",
+    "description_2": "You'll find the rest on our shelves."
   }
 }

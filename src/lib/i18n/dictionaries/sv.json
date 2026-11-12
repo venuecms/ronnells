@@ -56,5 +56,11 @@
     "pages": "sidor",
     "shop": "butik",
     "error": "Något gick fel vid sökningen... försök igen?"
+  },
+  "antikvariat": {
+    "title": "Sök i vår katalog på antikvariat.net",
+    "submit": "Sök",
+    "description_1": "Drygt trettioentusen av våra 100 000+ titlar är sökbara.",
+    "description_2": "Övriga hittar du i våra hyllor."
   }
 }

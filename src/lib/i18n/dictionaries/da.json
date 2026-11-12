@@ -56,5 +56,11 @@
     "pages": "sider",
     "shop": "butik",
     "error": "Noget gik galt under søgningen... prøv igen?"
+  },
+  "antikvariat": {
+    "title": "Søg i vores katalog på antikvariat.net",
+    "submit": "Søg",
+    "description_1": "Godt tredivetusind af vores 100.000+ titler er søgbare.",
+    "description_2": "Resten finder du på vores hylder."
   }
 }
