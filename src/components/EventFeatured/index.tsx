@@ -1,10 +1,10 @@
 import {
   type Site,
+  VenueContent,
   type Event as VenueEvent,
   getLocalizedContent,
 } from "@venuecms/sdk-next";
-import { VenueContent } from "@venuecms/sdk-next";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { Link } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -32,6 +32,7 @@ export const EventFeatured = ({
   className?: string;
 }) => {
   const locale = useLocale();
+  const t = useTranslations("events");
   const { location } = event;
 
   const { content } = getLocalizedContent(event?.localizedContent, locale);
@@ -71,7 +72,9 @@ export const EventFeatured = ({
               <LocationLink location={event.location} />
             ) : null}
           </div>
-          {isCancelled ? <div className="text-secondary">Cancelled</div> : null}
+          {isCancelled ? (
+            <div className="text-secondary">{t("cancelled")}</div>
+          ) : null}
         </div>
       </div>
     </>

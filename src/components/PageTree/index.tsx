@@ -2,7 +2,7 @@
 
 import { Page, getLocalizedContent } from "@venuecms/sdk-next";
 import { ChevronRight } from "lucide-react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import TreeView, { INode, flattenTree } from "react-accessible-treeview";
 import { IFlatMetadata } from "react-accessible-treeview/dist/TreeView/utils";
@@ -15,11 +15,14 @@ import {
   buildTree,
 } from "@/lib/utils/tree";
 
+import { resolvePageHref } from "../utils/pageHref";
+
 type NodeFlatMetadata = INode<IFlatMetadata> & { id: string };
 
 export function PageTree({ pages }: { pages: Array<PageWithParent> }) {
   const { slug } = useParams();
   const locale = useLocale();
+  const t = useTranslations("menu");
   const pageTree = buildTree(pages);
 
   const currentPage = pages.find((page) => page.slug === slug);
@@ -49,7 +52,7 @@ export function PageTree({ pages }: { pages: Array<PageWithParent> }) {
     <div>
       <TreeView
         data={flatPageTree}
-        aria-label="Pages"
+        aria-label={t("pages")}
         className="[&_li:first-child]:pt-4 [&_li]:pb-4"
         defaultExpandedIds={ancestorsOfCurrentpage}
         nodeRenderer={({
@@ -61,9 +64,22 @@ export function PageTree({ pages }: { pages: Array<PageWithParent> }) {
           handleExpand,
         }) => {
           // @ts-ignore - ignoring as the typing is partially handled in the underlying library
-          const { localizedContent, slug, type, openInNewTab, linkUrl } =
-            (element.metadata as Page | undefined) ?? {};
+          const {
+            localizedContent,
+            slug,
+            type,
+            parentId,
+            openInNewTab,
+            linkUrl,
+          } = (element.metadata as Page | undefined) ?? {};
           const { content } = getLocalizedContent(localizedContent, locale);
+          const { href, target } = resolvePageHref({
+            slug: slug ?? "",
+            type,
+            parentId,
+            linkUrl,
+            openInNewTab,
+          });
 
           if (
             currentPage?.id === element.id &&
@@ -82,12 +98,12 @@ export function PageTree({ pages }: { pages: Array<PageWithParent> }) {
               className="flex items-center gap-2"
             >
               <Link
-                href={type === "LINK" && linkUrl ? linkUrl : `/p/${slug}`}
+                href={href}
                 className={cn(
                   "name",
                   element.metadata?.id === currentPage?.id && "font-bold",
                 )}
-                target={type === "LINK" && openInNewTab ? "_blank" : "_self"}
+                target={target}
               >
                 {content.title}
               </Link>

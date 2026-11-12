@@ -1,15 +1,17 @@
 import {
   ProductVariant,
+  type SearchParams,
   Site,
+  VenueContent,
   Product as VenueProduct,
   getLocalizedContent,
 } from "@venuecms/sdk-next";
-import { VenueContent } from "@venuecms/sdk-next";
-
-import { VenueImage } from "@/components/VenueImage";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { cn } from "@/lib/utils";
+
+import { contentComponents } from "@/components/ListingBlock";
+import { VenueImage } from "@/components/VenueImage";
 
 import { ProfileCompact } from "../ProfileCompact";
 import {
@@ -18,14 +20,23 @@ import {
   TwoColumnLayout,
   TwoSubColumnLayout,
 } from "../layout";
-import { renderedStyles } from "../utils/styles";
 
 export const Product = ({
   product,
   site,
+  searchParams,
 }: {
   product: VenueProduct;
   site: Site;
+  /**
+   * The route's search params, for the pagers on any listing blocks in this
+   * content. Only a route segment can read them, so they are passed down.
+   *
+   * Required rather than optional: a caller that forgets it costs every listing
+   * in this content its pager, and does so silently — the records still render.
+   * A surface that genuinely has no URL to page by passes `{}` and says so.
+   */
+  searchParams: SearchParams;
 }) => {
   const locale = useLocale();
   const { artists, variants = [] } = product;
@@ -65,9 +76,10 @@ export const Product = ({
 
       <ColumnRight className="max-w-4xl">
         <VenueContent
-          className="flex flex-col gap-6 sm:pr-32"
+          className="flex flex-col gap-6"
           content={content}
-          contentStyles={renderedStyles}
+          contentStyles={contentComponents}
+          searchParams={searchParams}
         />
         <TwoSubColumnLayout>
           {artists.map(({ profile }) => (
@@ -86,12 +98,13 @@ const VariantPrice = ({
   variant: ProductVariant;
   site: Site;
 }) => {
+  const t = useTranslations("shop");
   const displayPrice =
     variant.price > 0
       ? `${variant.price} ${variant.currency || site.settings?.defaults?.currency || ""}`
       : variant.price < 0
-        ? "Free"
-        : "Buy";
+        ? t("free")
+        : t("buy");
   return variant.price > 0 || variant.externalLink ? (
     <div
       key={variant.productType?.type + "price"}

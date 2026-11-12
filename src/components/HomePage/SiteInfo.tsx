@@ -1,22 +1,36 @@
 import {
   LocalizedContent,
+  type SearchParams,
   VenueContent,
-  getEvents,
   getLocalizedContent,
   getSite,
 } from "@venuecms/sdk-next";
 import { renderedStyles } from "@venuecms/sdk-next/utils";
 import { connection } from "next/server";
 
-import { EventFeatured } from "@/components/EventFeatured";
+import { contentComponents } from "@/components/ListingBlock";
 import { VenueImage } from "@/components/VenueImage";
 
 import { ColumnLeft, ColumnRight, TwoColumnLayout } from "../layout";
 
-export async function SiteInfo({ locale }: { locale: string }) {
+// The site description can hold listing blocks; keep the SDK's prose classes
+// for the hero text and add the template's listing renderers on top.
+const siteInfoStyles = { ...contentComponents, ...renderedStyles };
+
+export async function SiteInfo({
+  locale,
+  searchParams,
+}: {
+  locale: string;
+  /** Awaited here (after `connection()`) so the home route doesn't wait on it. */
+  searchParams: Promise<SearchParams>;
+}) {
   await connection();
 
-  const [{ data: site }] = await Promise.all([getSite()]);
+  const [{ data: site }, resolvedSearchParams] = await Promise.all([
+    getSite(),
+    searchParams,
+  ]);
 
   if (!site) return null;
 
@@ -44,7 +58,8 @@ export async function SiteInfo({ locale }: { locale: string }) {
               <VenueContent
                 className="flex flex-col gap-6 text-center"
                 content={siteContent}
-                contentStyles={renderedStyles}
+                contentStyles={siteInfoStyles}
+                searchParams={resolvedSearchParams}
               />
             ) : null}
           </ColumnLeft>
