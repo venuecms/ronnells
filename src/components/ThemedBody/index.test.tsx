@@ -10,31 +10,9 @@ vi.mock("@venuecms/sdk-next", () => ({ getSite: () => getSite() }));
 // next/font/google is a compiler transform with no runtime outside a Next
 // build, and next-themes only contributes the <html> class, which lives above
 // the subtree rendered here.
-vi.mock("next/font/google", () => {
-  const font = () => ({ style: { fontFamily: "stub" } });
-
-  return Object.fromEntries(
-    [
-      "Abel",
-      "Courier_Prime",
-      "EB_Garamond",
-      "Gothic_A1",
-      "Hanken_Grotesk",
-      "IBM_Plex_Mono",
-      "Inter",
-      "Jost",
-      "Karla",
-      "Kosugi_Maru",
-      "Open_Sans",
-      "Oswald",
-      "Outfit",
-      "Schibsted_Grotesk",
-      "Special_Elite",
-      "Work_Sans",
-      "Young_Serif",
-    ].map((name) => [name, font]),
-  );
-});
+vi.mock("next/font/google", () => ({
+  Open_Sans: () => ({ style: { fontFamily: "stub" } }),
+}));
 vi.mock("next-themes", () => ({
   ThemeProvider: ({ children }: { children: ReactNode }) => children,
 }));
