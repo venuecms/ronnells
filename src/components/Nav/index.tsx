@@ -2,27 +2,26 @@ import {
   LocalizedContent,
   Page,
   Site,
+  VenueContent,
   VenueImage,
   getLocalizedContent,
 } from "@venuecms/sdk-next";
-import { VenueContent } from "@venuecms/sdk-next";
 import { getPages } from "@venuecms/sdk-next";
 import { getLocale } from "next-intl/server";
 import { ReactNode } from "react";
 
 import { Link } from "@/lib/i18n";
 
-import { renderedStyles } from "../utils";
+import { resolvePageHref } from "../utils/pageHref";
+// The site description is a short blurb, so it takes prose styling only — no
+// listing blocks to resolve here.
+import { renderedStyles } from "../utils/styles";
 import { NavMenuDesktop } from "./NavMenuDesktop";
 import { NavMenuMobile } from "./NavMenuMobile";
-
-// Static slugs are reserved slugs in the nav that should not be redirected to a /p/[slug] but routed direct instead.
-const StaticSlugs = ["events", "archive", "shop"];
 
 export type RootPageContent = {
   page: Page;
   content: LocalizedContent;
-  isStatic: boolean;
 };
 
 export const Nav = async ({ logo, site }: { logo: ReactNode; site: Site }) => {
@@ -42,31 +41,30 @@ export const Nav = async ({ logo, site }: { logo: ReactNode; site: Site }) => {
   const rootPageContents = rootPages?.map((page) => ({
     page,
     content: getLocalizedContent(page.localizedContent, locale).content,
-    isStatic: StaticSlugs.includes(page.slug),
   }));
 
   const menuItems = rootPageContents
-    ? rootPageContents.map(({ page, content, isStatic }) => (
-        <li key={page.slug}>
-          <Link
-            className="md:underline-effect align-center"
-            href={
-              page.type === "LINK" && page.linkUrl
-                ? page.linkUrl
-                : `${isStatic ? "/" : "/p/"}${page.slug}`
-            }
-            target={page.type === "LINK" && page.linkUrl ? "_blank" : "_self"}
-          >
-            <div className="flex flex-row items-center gap-2 text-nowrap md:flex-col md:gap-1">
-              <VenueImage
-                className="min-h-[48px] min-w-[48px]"
-                image={page.image}
-              />
-              {content.title}
-            </div>
-          </Link>
-        </li>
-      ))
+    ? rootPageContents.map(({ page, content }) => {
+        const { href, target } = resolvePageHref(page);
+
+        return (
+          <li key={page.slug}>
+            <Link
+              className="md:underline-effect align-center"
+              href={href}
+              target={target}
+            >
+              <div className="flex flex-row items-center gap-2 text-nowrap md:flex-col md:gap-1">
+                <VenueImage
+                  className="min-h-[48px] min-w-[48px]"
+                  image={page.image}
+                />
+                {content.title}
+              </div>
+            </Link>
+          </li>
+        );
+      })
     : null;
 
   // Render the menu for desktop and mobile
