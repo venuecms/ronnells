@@ -50,7 +50,7 @@ export async function SiteInfo({
           </ColumnRight>
           <ColumnLeft className="justify-center gap-6 p-4">
             <img
-              className="hidden md:block"
+              className="hidden w-4/5 self-center md:block"
               src="/logo.svg"
               alt="Rönnells Antikvariat Logo"
             />
