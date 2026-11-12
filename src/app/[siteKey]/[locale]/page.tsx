@@ -2,6 +2,7 @@ import { getLocalizedMetadata } from "@/lib";
 import { Params } from "@/types";
 import { type SearchParams, getSite } from "@venuecms/sdk-next";
 
+import { AntikvariatSearch } from "@/components/HomePage/AntikvariatSearch";
 import { FeaturedEventsSection } from "@/components/HomePage/FeaturedEventsSection";
 import { ProductsSection } from "@/components/HomePage/ProductsSection";
 import { SiteInfo } from "@/components/HomePage/SiteInfo";
@@ -47,8 +48,10 @@ const Home = async ({
   return (
     <>
       <SiteInfo locale={locale} searchParams={searchParams} />
+
       <FeaturedEventsSection locale={locale} />
       <ProductsSection />
+      <AntikvariatSearch />
     </>
   );
 };

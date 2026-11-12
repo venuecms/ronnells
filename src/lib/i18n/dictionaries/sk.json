@@ -56,5 +56,11 @@
     "pages": "stránky",
     "shop": "obchod",
     "error": "Pri vyhľadávaní sa niečo pokazilo... skúsiť znova?"
+  },
+  "antikvariat": {
+    "title": "Vyhľadávajte v našom katalógu na antikvariat.net",
+    "submit": "Hľadať",
+    "description_1": "Viac ako tridsaťtisíc z našich vyše 100 000 titulov je možné vyhľadať.",
+    "description_2": "Ostatné nájdete v našich regáloch."
   }
 }
